@@ -13,8 +13,8 @@ export function getInitialData () {
   }))
 }
 
-export function submitVote({ questionId, choiceId }) {
+export function submitVote({ questionUrl, choiceUrl }) {
   return new Promise((resolve) => { 
-    resolve({ questionId, choiceId })
+    resolve({ questionUrl, choiceUrl })
   })
 }
