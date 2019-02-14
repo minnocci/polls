@@ -11,8 +11,12 @@ export default function userChoices (state = {}, action) {
         ...action.userChoices
       }
     case ADD_USER_CHOICE:
-      // TODO implement later
-      return state
+      const choice = { questionUrl: action.questionUrl, choiceUrl: action.choiceUrl}
+      const key = Object.keys(state).length
+      return {
+        ...state,
+        [key]: choice
+      }
     default:
       return state
   }
