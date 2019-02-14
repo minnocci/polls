@@ -1,4 +1,21 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Polls
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). The provided documentation can be found at the end of this document.
+
+## Outline
+
+Single page application that lets users vote through the Polls
+API. Documentation for the API is available at http://docs.pollsapi.apiary.io/.
+
+## Features
+
+- [List of questions page](http://pasteboard.co/8AReDrPvo.jpg)
+- [Question detail page](http://pasteboard.co/8ARC7212L.jpg)
+- Optional stretch goal: Create new question page (not included yet)
+
+## Getting started
+To run this project, you must first install the dependencies with `npm install`. Then, you can run it locally with `npm start`.
+
+# Create React App provided documentation
 
 ## Available Scripts
 
