@@ -2,9 +2,9 @@ import React from 'react'
 import { formatDate } from '../utils/helpers'
 
 import Card from '@material-ui/core/Card'
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
+import CardHeader from '@material-ui/core/CardHeader'
+import CardContent from '@material-ui/core/CardContent'
+import Typography from '@material-ui/core/Typography'
 
 export default function Question(props) {
 

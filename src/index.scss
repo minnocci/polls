@@ -35,4 +35,30 @@ main {
       }
     } 
   }
+  .choices {
+    .option {
+      border-top: 1px solid #cfd8dc;
+      padding: 8px;
+      &:first-child {
+        border: 0;
+      }
+      &:hover {
+        background-color: rgba(#cfd8dc,0.1);
+      }
+      &.selected {
+        background-color: rgba(#cfd8dc,0.4);
+      }
+      .option-content {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 40px;
+        &.option-content-ellipsis {
+          @include text-ellipsis();
+        }
+      }
+      button {
+        float: right;
+      }
+    }
+  }
 }

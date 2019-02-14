@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 import Questions from './Questions'
+import QuestionDetail from './QuestionDetail'
 
 class App extends Component {
 
@@ -29,7 +30,7 @@ class App extends Component {
             {bar}
             <CircularProgress className='loader' color="secondary" />
           </div>
-        : <Questions />
+        : <QuestionDetail questionId={10}/>
     )
 
   }
