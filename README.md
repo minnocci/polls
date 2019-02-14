@@ -2,20 +2,66 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). The provided documentation can be found at the end of this document.
 
 ## Outline
-
 Single page application that lets users vote through the Polls
 API. Documentation for the API is available at http://docs.pollsapi.apiary.io/.
-
-## Features
-
-- [List of questions page](http://pasteboard.co/8AReDrPvo.jpg)
-- [Question detail page](http://pasteboard.co/8ARC7212L.jpg)
-- Optional stretch goal: Create new question page (not included yet)
 
 ## Getting started
 To run this project, you must first install the dependencies with `npm install`. Then, you can run it locally with `npm start`.
 
-# Create React App provided documentation
+## Features
+- List of questions page
+- Question detail page
+- Optional stretch goal: Create new question page (not included yet :/)
+
+## Additional features
+- User choices are stored during the session, in order not to make multiple votes for the same question. Interpretation feature :)
+
+
+# Planning
+
+## Break down views and components
+- Questions page component requirements:
+  - Is located at /
+  - Shows questions collection, with every question as a card (question component)
+  - Each question will show: question, formatted timestamp, number of choices
+
+- Question detail page component requirements:
+  - Is located at /questions/:id
+  - Shows an individual question with its choices
+  - For each choice it will be shown: choice, votes, percentage
+  - Behaves as a form, the user is able to submit a choice
+  - Nice to have: checks if the user voted already and does not allow to vote again
+
+## Determine events in the app
+- Questions page component:
+  - get the questions (action type: RECEIVE_QUESTIONS)
+- Question component:
+  - no events other than navigation on click
+- Question detail page component:
+  - get a particular question from the list of questions
+  - get the user stored data to decide if the user is allowed vote (action type: GET_USER_CHOICES)
+  - set the vote for question and user if votes (two action types: VOTE_CHOICE, ADD_USER_CHOICE)
+
+## Store and data
+- questions: responsible to handle the questions state
+- userChoices: responsible to handle the user choices (only kept in the session)
+```
+{
+  questions: {[
+    { question, published_at, url, choices },
+    { question, published_at, url, choices },
+    ...
+  ]},
+  userChoices: {[
+  	{ questionUrl, choiceUrl },
+  	{ questionUrl, choiceUrl },
+  	...
+  ]}
+}
+```
+
+
+# Create React App - provided README
 
 ## Available Scripts
 
