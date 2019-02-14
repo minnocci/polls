@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link, withRouter } from 'react-router-dom'
 
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -33,9 +34,10 @@ class Questions extends Component {
                 <Grid
                   key={`question-${key}`}
                   item xs={12} sm={6} md={4} lg={3}>
-                  <div>
+                  <Link to={`${questions[key].url}`}
+                    className='question-link'>
                     <Question question={questions[key]} />
-                  </div>
+                  </Link>
                 </Grid>
               )
             })}
@@ -54,4 +56,4 @@ function mapStateToProps ({ questions }) {
   }
 }
 
-export default connect(mapStateToProps)(Questions)
+export default withRouter(connect(mapStateToProps)(Questions))

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleVote } from '../actions/shared'
+import { withRouter } from 'react-router-dom'
 
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
@@ -13,16 +14,31 @@ import Typography from '@material-ui/core/Typography'
 
 class QuestionDetail extends Component {
 
+  state = {
+    question: null
+  }
+
+  componentDidMount() {
+    const { questions } = this.props
+    const questionId = this.props.match.params.questionId
+    const question = Object.values(questions).filter((values) => 
+      values.url === `/questions/${questionId}`
+    )[0]
+    this.setState({ question })
+  }
+
   hasVoted = () => {
-    const { question, userChoices } = this.props
+    const { userChoices } = this.props
+    const { question } = this.state
     return Object.keys(userChoices).filter((key) => {
-      return userChoices[key].questionUrl === question.url
+      return userChoices[key].questionId === question.url
     }).length > 0
   }
 
   handleClick = (ev, choice) => {
     ev.preventDefault()
-    const { question, dispatch } = this.props
+    const { dispatch } = this.props
+    const { question } = this.state
     dispatch(handleVote({
       questionUrl: question.url,
       choiceUrl: choice.url
@@ -38,8 +54,7 @@ class QuestionDetail extends Component {
   }
 
   render() {
-
-    const { question } = this.props
+    const { question } = this.state
     if (!question) return null
     const hasVoted = this.hasVoted()
     const totalVotes = this.calculateTotalVotes(question.choices)
@@ -82,6 +97,7 @@ class QuestionDetail extends Component {
                         </Grid>
                         <Grid item xs={6} sm={3}>
                           <Button
+                            type="submit"
                             variant="contained"
                             color="secondary"
                             disabled={hasVoted}
@@ -105,9 +121,12 @@ class QuestionDetail extends Component {
                     </Typography>
                 }
               </div>
-              <Button variant='contained' color='default'>
-                  Back
-              </Button>
+              <Button
+                variant='contained'
+                color='default'
+                onClick={() => window.history.back()}>
+                Back
+            </Button>
             </CardContent>
           </Card>
         </main>
@@ -117,14 +136,11 @@ class QuestionDetail extends Component {
 
 }
 
-function mapStateToProps ({ questions, userChoices }, { questionId }) {
-  const question = Object.values(questions).filter((values) => 
-    values.url === `/questions/${questionId}`
-  )[0]
+function mapStateToProps ({ questions, userChoices }) {
   return {
-    question,
+    questions,
     userChoices
   }
 }
 
-export default connect(mapStateToProps)(QuestionDetail)
+export default withRouter(connect(mapStateToProps)(QuestionDetail))

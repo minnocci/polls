@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -25,12 +26,23 @@ class App extends Component {
     )
 
     return (
-      this.props.loading === true
-        ? <div>
-            {bar}
-            <CircularProgress className='loader' color="secondary" />
-          </div>
-        : <QuestionDetail questionId={10}/>
+      <Router>
+        <Fragment>
+          { 
+            this.props.loading === true
+            ? <div>
+                {bar}
+                <CircularProgress className='loader' color="secondary" />
+              </div>
+            : <div>
+                <Route path='/'
+                  exact component={Questions} />
+                <Route path='/questions/:questionId'
+                  exact component={QuestionDetail} />
+              </div>
+          }
+          </Fragment>
+        </Router>
     )
 
   }
