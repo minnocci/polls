@@ -1,3 +1,9 @@
+@mixin text-ellipsis() {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -16,4 +22,17 @@ main {
   position: absolute;
   left: calc(50% - 20px);
   top: calc(50% - 20px);
+}
+
+.question {
+  .question-header {
+    background: #cfd8dc;
+    > div {
+      @include text-ellipsis();
+      > span {
+        display: inline-block;
+        font-size: 1.25rem;
+      }
+    } 
+  }
 }

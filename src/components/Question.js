@@ -1,4 +1,5 @@
 import React from 'react'
+import { formatDate } from '../utils/helpers'
 
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader';
@@ -17,7 +18,7 @@ export default function Question(props) {
       />
       <CardContent>
         <Typography>
-          Published at {published_at}
+          Published at {formatDate(published_at)}
         </Typography>
         <Typography>
           {choices.length} choices

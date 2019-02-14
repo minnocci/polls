@@ -26,19 +26,21 @@ class Questions extends Component {
     return (
       <div>
         {bar}
-        <Grid container spacing={24}>
-          {Object.keys(questions).map((key) => {
-            return (
-              <Grid
-                key={`question-${key}`}
-                item xs={12} sm={6} md={4} lg={3}>
-                <div>
-                  <Question question={questions[key]} />
-                </div>
-              </Grid>
-            )
-          })}
-        </Grid>
+        <main>
+          <Grid container spacing={24}>
+            {Object.keys(questions).map((key) => {
+              return (
+                <Grid
+                  key={`question-${key}`}
+                  item xs={12} sm={6} md={4} lg={3}>
+                  <div>
+                    <Question question={questions[key]} />
+                  </div>
+                </Grid>
+              )
+            })}
+          </Grid>
+        </main>
       </div>
     )
 
