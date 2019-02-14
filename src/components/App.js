@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 class App extends Component {
 
   componentDidMount() {
@@ -10,13 +14,19 @@ class App extends Component {
   }
 
   render() {
+    const bar = (
+      <AppBar position="static" color="secondary">
+        <Toolbar/>
+      </AppBar>
+    )
+
     return (
-      <div>
-        {this.props.loading === true
-          ? <div>Loading...</div>
-          : <div>Loaded!</div>
-        }
-      </div>
+      this.props.loading === true
+        ? <div>
+            {bar}
+            <CircularProgress className='loader' color="secondary" />
+          </div>
+        : <div>Loaded!</div>
     )
   }
   
