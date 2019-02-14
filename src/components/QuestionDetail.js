@@ -31,7 +31,7 @@ class QuestionDetail extends Component {
     const { userChoices } = this.props
     const { question } = this.state
     return Object.keys(userChoices).filter((key) => {
-      return userChoices[key].questionId === question.url
+      return userChoices[key].questionUrl === question.url
     }).length > 0
   }
 
