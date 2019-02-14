@@ -6,6 +6,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+import Questions from './Questions'
+
 class App extends Component {
 
   componentDidMount() {
@@ -14,6 +16,7 @@ class App extends Component {
   }
 
   render() {
+
     const bar = (
       <AppBar position="static" color="secondary">
         <Toolbar/>
@@ -26,8 +29,9 @@ class App extends Component {
             {bar}
             <CircularProgress className='loader' color="secondary" />
           </div>
-        : <div>Loaded!</div>
+        : <Questions />
     )
+
   }
   
 }
