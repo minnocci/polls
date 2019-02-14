@@ -1,6 +1,6 @@
 // Using Mock data
 
-const mockedQuestions = [
+export const mockedQuestions = [
   {
     'url': '/questions/10',
     'published_at': '2015-05-27T21:22:26.670000+00:00',
@@ -114,7 +114,7 @@ const mockedQuestions = [
   }
 ]
 
-const mockedUserChoices = [
+export const mockedUserChoices = [
   {
     'questionUrl': '/questions/10',
     'choiceUrl': '/questions/10/choices/71'
