@@ -1,20 +1,14 @@
 import {
-  _getQuestions,
-  _getUserChoices
+  //_getMockedInitialData, // change to use mock data
+  //_submitVoteMock // change to use mock data
+  _getInitialData,
+  _submitVote
 } from './_DATA.js'
 
 export function getInitialData () {
-  return Promise.all([
-    _getQuestions(),
-    _getUserChoices(),
-  ]).then(([questions, userChoices]) => ({
-    questions,
-    userChoices
-  }))
+  return _getInitialData()
 }
 
 export function submitVote({ questionUrl, choiceUrl }) {
-  return new Promise((resolve) => { 
-    resolve({ questionUrl, choiceUrl })
-  })
+  return _submitVote({ questionUrl, choiceUrl })
 }
