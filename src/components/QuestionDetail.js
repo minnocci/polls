@@ -59,9 +59,9 @@ class QuestionDetail extends Component {
     const hasVoted = this.hasVoted()
     const totalVotes = this.calculateTotalVotes(question.choices)
     const bar = (
-      <AppBar position="static" color="secondary">
+      <AppBar position='static' color='secondary'>
         <Toolbar>
-          <Typography variant="h6" color="inherit">
+          <Typography variant='h6' color='inherit'>
             Question Detail
           </Typography>
         </Toolbar>
@@ -97,9 +97,9 @@ class QuestionDetail extends Component {
                         </Grid>
                         <Grid item xs={6} sm={3}>
                           <Button
-                            type="submit"
-                            variant="contained"
-                            color="secondary"
+                            type='submit'
+                            variant='contained'
+                            color='secondary'
                             disabled={hasVoted}
                             onClick={(ev) => this.handleClick(ev, choice)}>
                             Vote
@@ -113,10 +113,10 @@ class QuestionDetail extends Component {
               <div className='question-info'>
                 {
                 hasVoted
-                  ? <Typography className='center' variant="caption" gutterBottom>
+                  ? <Typography className='center' variant='caption' gutterBottom>
                       You have already voted in this poll!
                     </Typography>
-                  : <Typography className='center' variant="caption" gutterBottom>
+                  : <Typography className='center' variant='caption' gutterBottom>
                       You have not voted in this poll yet!
                     </Typography>
                 }

@@ -20,7 +20,7 @@ class App extends Component {
   render() {
 
     const bar = (
-      <AppBar position="static" color="secondary">
+      <AppBar position='static' color='secondary'>
         <Toolbar/>
       </AppBar>
     )
@@ -32,7 +32,7 @@ class App extends Component {
             this.props.loading === true
             ? <div>
                 {bar}
-                <CircularProgress className='loader' color="secondary" />
+                <CircularProgress className='loader' color='secondary' />
               </div>
             : <div>
                 <Route path='/'

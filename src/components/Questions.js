@@ -15,9 +15,9 @@ class Questions extends Component {
 
     const { questions } = this.props
     const bar = (
-      <AppBar position="static" color="secondary">
+      <AppBar position='static' color='secondary'>
         <Toolbar>
-          <Typography variant="h6" color="inherit">
+          <Typography variant='h6' color='inherit'>
             Questions
           </Typography>
         </Toolbar>
