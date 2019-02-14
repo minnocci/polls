@@ -113,10 +113,10 @@ const questions = [
 ]
 
 const userChoices = [
-  {
+  /*{
     "questionId": "/questions/10",
     "choiceId": "/questions/10/choices/71"
-  }
+  }*/
 ]
 
 export function _getQuestions () {

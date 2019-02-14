@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { handleVote } from '../actions/shared'
 
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
@@ -12,10 +13,20 @@ import Typography from '@material-ui/core/Typography'
 
 class QuestionDetail extends Component {
 
+  hasVoted = () => {
+    const { question, userChoices } = this.props
+    return Object.keys(userChoices).filter((key) => {
+      return userChoices[key].questionUrl === question.url
+    }).length > 0
+  }
+
   handleClick = (ev, choice) => {
     ev.preventDefault()
-    // TODO handleClick
-    console.log("handle click")
+    const { question, dispatch } = this.props
+    dispatch(handleVote({
+      questionUrl: question.url,
+      choiceUrl: choice.url
+    }))
   }
 
   calculateTotalVotes = (choices) => {
@@ -30,6 +41,7 @@ class QuestionDetail extends Component {
 
     const { question } = this.props
     if (!question) return null
+    const hasVoted = this.hasVoted()
     const totalVotes = this.calculateTotalVotes(question.choices)
     const bar = (
       <AppBar position="static" color="secondary">
@@ -72,6 +84,7 @@ class QuestionDetail extends Component {
                           <Button
                             variant="contained"
                             color="secondary"
+                            disabled={hasVoted}
                             onClick={(ev) => this.handleClick(ev, choice)}>
                             Vote
                           </Button>
@@ -82,7 +95,15 @@ class QuestionDetail extends Component {
                 })}
               </form>
               <div className='question-info'>
-                Show info
+                {
+                hasVoted
+                  ? <Typography className='center' variant="caption" gutterBottom>
+                      You have already voted in this poll!
+                    </Typography>
+                  : <Typography className='center' variant="caption" gutterBottom>
+                      You have not voted in this poll yet!
+                    </Typography>
+                }
               </div>
               <Button variant='contained' color='default'>
                   Back
