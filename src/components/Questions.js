@@ -6,6 +6,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid';
 
+import Question from './Question'
+
 class Questions extends Component {
   
   render() {
@@ -29,10 +31,9 @@ class Questions extends Component {
             return (
               <Grid
                 key={`question-${key}`}
-                item xs={12} sm={6} md={4} lg={3}
-              >
+                item xs={12} sm={6} md={4} lg={3}>
                 <div>
-                  Question
+                  <Question question={questions[key]} />
                 </div>
               </Grid>
             )
