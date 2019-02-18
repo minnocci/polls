@@ -19,6 +19,14 @@ class QuestionDetail extends Component {
   }
 
   componentDidMount() {
+    this.loadData()
+  }
+
+  componentWillReceiveProps() {
+    this.loadData()
+  }
+
+  loadData = () => {
     const { questions } = this.props
     const questionId = this.props.match.params.questionId
     const question = Object.values(questions).filter((values) => 
