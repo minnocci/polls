@@ -14,39 +14,25 @@ import Typography from '@material-ui/core/Typography'
 
 class QuestionDetail extends Component {
 
-  state = {
-    question: null
-  }
-
-  componentDidMount() {
-    this.loadData()
-  }
-
-  componentWillReceiveProps() {
-    this.loadData()
-  }
-
-  loadData = () => {
+  loadQuestion = () => {
     const { questions } = this.props
     const questionId = this.props.match.params.questionId
     const question = Object.values(questions).filter((values) => 
       values.url === `/questions/${questionId}`
-    )[0]
-    this.setState({ question })
+    ).shift()
+    return question
   }
 
-  hasVoted = () => {
+  hasVoted = (question) => {
     const { userChoices } = this.props
-    const { question } = this.state
     return Object.keys(userChoices).filter((key) => {
       return userChoices[key].questionUrl === question.url
     }).length > 0
   }
 
-  handleClick = (ev, choice) => {
+  handleClick = (ev, choice, question) => {
     ev.preventDefault()
     const { dispatch } = this.props
-    const { question } = this.state
     dispatch(handleVote({
       questionUrl: question.url,
       choiceUrl: choice.url
@@ -62,9 +48,9 @@ class QuestionDetail extends Component {
   }
 
   render() {
-    const { question } = this.state
+    const question = this.loadQuestion()
     if (!question) return null
-    const hasVoted = this.hasVoted()
+    const hasVoted = this.hasVoted(question)
     const totalVotes = this.calculateTotalVotes(question.choices)
     const bar = (
       <AppBar position='static' color='secondary'>
@@ -109,7 +95,7 @@ class QuestionDetail extends Component {
                             variant='contained'
                             color='secondary'
                             disabled={hasVoted}
-                            onClick={(ev) => this.handleClick(ev, choice)}>
+                            onClick={(ev) => this.handleClick(ev, choice, question)}>
                             Vote
                           </Button>
                         </Grid>
